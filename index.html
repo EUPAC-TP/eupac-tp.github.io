@@ -65,6 +65,41 @@
     .embeddable_schedule tr:hover {
       background-color: #f9f9f9;
     }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .embed-center {
+        display: block;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .embeddable_schedule {
+        width: max-content;
+        min-width: 100%;
+      }
+
+      .embeddable_schedule table {
+        margin: 0 !important;
+        max-width: none;
+        box-shadow: none;
+      }
+
+      .embeddable_schedule th,
+      .embeddable_schedule td {
+        padding: 0.5rem 0.65rem;
+      }
+
+      .embeddable_schedule th:first-child,
+      .embeddable_schedule td:first-child {
+        white-space: nowrap;
+      }
+    }
   </style>
 
   <link rel="icon" type="image/png" sizes="600x600" href="/logo.png">
