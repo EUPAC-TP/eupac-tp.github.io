@@ -104,13 +104,63 @@
   <script src="https://researchseminars.org/embed_seminars.js"
           onload="seminarEmbedder.initialize({'addCSS': true});"></script>
 
-  <!-- JS to center injected tables -->
+  <!-- Adjust the tables injected by ResearchSeminars.org -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.embeddable_schedule').forEach(el => {
         const inner = el.querySelector('table, div, iframe');
         if (inner) inner.style.margin = '0 auto';
       });
+
+      const pastSchedule = document.querySelector('[daterange="past"]');
+      const pastScheduleWrapper = pastSchedule?.parentElement;
+      const slidesByDate = {
+        'Sep 26': 'seminars/25-09-26/seminar2-jskelton.pdf',
+        'Oct 03': 'seminars/25-10-03/seminar3-jfaller.pdf',
+        'Oct 17': 'seminars/25-10-17/Anomalies-jskelton.pdf',
+        'Nov 07': 'seminars/25-11-7/Anomaly-inflow-II-jskelton.pdf'
+      };
+
+      const addSlidesColumn = () => {
+        const table = pastScheduleWrapper?.querySelector(
+          '[daterange="past"] table'
+        );
+        if (!table || table.dataset.slidesColumnAdded === 'true') return;
+
+        const headerRow = table.querySelector('thead tr') || table.querySelector('tr');
+        if (!headerRow) return;
+
+        const slidesHeader = document.createElement('th');
+        slidesHeader.textContent = 'Slides';
+        headerRow.appendChild(slidesHeader);
+
+        table.querySelectorAll('tbody tr').forEach(row => {
+          const slidesCell = document.createElement('td');
+          const seminarDate = row.querySelector('.monthdate')?.textContent.trim();
+          const slidesPath = slidesByDate[seminarDate];
+
+          if (slidesPath) {
+            const slidesLink = document.createElement('a');
+            slidesLink.href = slidesPath;
+            slidesLink.textContent = 'View';
+            slidesLink.target = '_blank';
+            slidesLink.rel = 'noopener';
+            slidesCell.appendChild(slidesLink);
+          }
+
+          row.appendChild(slidesCell);
+        });
+
+        table.dataset.slidesColumnAdded = 'true';
+      };
+
+      if (pastScheduleWrapper) {
+        addSlidesColumn();
+        new MutationObserver(addSlidesColumn).observe(pastScheduleWrapper, {
+          childList: true,
+          subtree: true
+        });
+      }
     });
   </script>
   
