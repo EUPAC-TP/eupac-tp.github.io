@@ -26,6 +26,26 @@
       text-decoration: underline;
     }
 
+    .youtube-link-row {
+      text-align: center;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .youtube-channel-link {
+      display: inline-block;
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      background: #ff0054;
+      color: white;
+      font-weight: 600;
+    }
+
+    .youtube-channel-link:hover {
+      background: #d90048;
+      color: white;
+      text-decoration: none;
+    }
+
     /* --- Embed styling & centering --- */
     .embed-center {
       display: flex;
@@ -110,13 +130,20 @@
   <div style="text-align: center;">
   <img src="croplogo.gif" alt="EUPAC-TP Logo" style="max-width:100px;">
   </div>
-  <p>This is the webpage for the <i>European and Pacific Theoretical Physics</i> Seminar series.</p><p>
-  European and Pacific Theoretical Physics is a group that runs online seminars and talks across broad topics in theoretical and mathematical physics. Our goal is to share concepts across continents to bring about a deeper understanding of cutting-edge topics in physics.
+  <p>
+  The European and Pacific Theoretical Physics Seminar Series hosts online talks across theoretical and mathematical physics. Our goal is to connect researchers across continents and deepen understanding of cutting-edge topics. In late 2025, our focus was on <i>Categorical Symmetries</i>.
   </p>
-  <!--
-  <p>Our focus for latter half of 2025 was <i>Generalised (Categorical) Symmetries</i>.</p>
-  -->
-  
+  <p>
+  Presenter-provided materials are linked in the Slides column beside the corresponding talks below, when available. Recordings are available on our YouTube channel.
+  </p>
+
+  <div class="youtube-link-row">
+    <a class="youtube-channel-link"
+       href="https://www.youtube.com/@eupactp"
+       target="_blank"
+       rel="noopener">Visit Our YouTube Channel</a>
+  </div>
+
       <p>Subscribe to your preferred calendar app to automatically keep up to date with the seminars!</p>
 <div style="display: flex; justify-content: center; gap: 10px; align-items: center; margin-bottom: 20px;">
     <a href="https://calendar.google.com/calendar/render?cid=http%3A%2F%2Fresearchseminars.org%2Fseminar%2FEUPAC-TP%2Fics" target="_blank" style="text-decoration: none; display: flex; align-items: center; gap: 5px;">
