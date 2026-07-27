@@ -4,8 +4,13 @@
   <meta charset="UTF-8" />
   <title>EUPAC-TP Seminar Schedule</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <style>
+    :root {
+      --link-color: #007acc;
+      --link-hover-color: #005f9e;
+    }
+
     body {
       font-family: system-ui, sans-serif;
       background: #f8f8f8;
@@ -18,32 +23,61 @@
       text-align: center;
     }
 
-    a {
-      color: #007acc;
+    a,
+    a:visited {
+      color: var(--link-color);
       text-decoration: none;
     }
+
     a:hover {
+      color: var(--link-hover-color);
       text-decoration: underline;
     }
 
-    .youtube-link-row {
+    .about-series {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .about-series p {
+      line-height: 1.55;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 1rem auto 1.5rem;
+    }
+
+    .resource-links a {
+      font-weight: 400;
+    }
+
+    .calendar-links i {
+      color: var(--link-color);
+    }
+
+    .past-talks-actions {
       text-align: center;
-      margin: 1rem 0 1.5rem;
+      margin: -2rem 0 1.5rem;
     }
 
-    .youtube-channel-link {
-      display: inline-block;
-      padding: 0.65rem 1rem;
-      border-radius: 999px;
-      background: #ff0054;
-      color: white;
-      font-weight: 600;
+    .past-talks-toggle {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--link-color);
+      font: inherit;
+      font-weight: 400;
+      cursor: pointer;
     }
 
-    .youtube-channel-link:hover {
-      background: #d90048;
-      color: white;
-      text-decoration: none;
+    .past-talks-toggle:hover {
+      color: var(--link-hover-color);
+      text-decoration: underline;
     }
 
     /* --- Embed styling & centering --- */
@@ -84,6 +118,10 @@
 
     .embeddable_schedule tr:hover {
       background-color: #f9f9f9;
+    }
+
+    .embeddable_schedule tr[hidden] {
+      display: none !important;
     }
 
     @media (max-width: 600px) {
@@ -130,39 +168,52 @@
   <div style="text-align: center;">
   <img src="croplogo-pingpong.gif" alt="EUPAC-TP Logo" style="max-width:100px;">
   </div>
-  <p>
-  The European and Pacific Theoretical Physics Seminar Series hosts online talks across theoretical and mathematical physics. Our goal is to connect researchers across continents and deepen understanding of cutting-edge topics. In late 2025, our focus was on <i>Categorical Symmetries</i>.
-  </p>
-  <p>
-  Presenter-provided materials are linked in the Slides column beside the corresponding talks below, when available. Recordings are available on our YouTube channel.
-  </p>
+  <section class="about-series" aria-label="About the seminar series">
+    <p>
+    EUPAC-TP hosts informal online seminars across mathematical and theoretical physics, connecting researchers across continents. Everyone is welcome to participate or present.
+    </p>
+    <p>
+    Presenter materials are linked in the Slides column below. In 2025, we focused on <i>Generalised (Categorical) Symmetries</i>, following <a href="https://arxiv.org/pdf/2411.09082" target="_blank" rel="noopener">these lecture notes</a>. In 2026, the series resumed with invited talks across physics.
+    </p>
+  </section>
 
-  <div class="youtube-link-row">
-    <a class="youtube-channel-link"
-       href="https://www.youtube.com/@eupactp"
+  <nav class="resource-links" aria-label="Seminar resources">
+    <a href="https://unibe-ch.zoom.us/j/6801537904"
        target="_blank"
-       rel="noopener">Visit Our YouTube Channel</a>
-  </div>
+       rel="noopener">Join on Zoom</a>
+    <a href="https://www.youtube.com/@eupactp"
+       target="_blank"
+       rel="noopener">Watch on YouTube</a>
+    <a href="https://forms.gle/StswcjC7RbXWuvAr8"
+       target="_blank"
+       rel="noopener">Join the Mailing List</a>
+  </nav>
 
       <p>Subscribe to your preferred calendar app to automatically keep up to date with the seminars!</p>
-<div style="display: flex; justify-content: center; gap: 10px; align-items: center; margin-bottom: 20px;">
+<div class="calendar-links" style="display: flex; justify-content: center; gap: 10px; align-items: center; margin-bottom: 20px;">
     <a href="https://calendar.google.com/calendar/render?cid=http%3A%2F%2Fresearchseminars.org%2Fseminar%2FEUPAC-TP%2Fics" target="_blank" style="text-decoration: none; display: flex; align-items: center; gap: 5px;">
-        <i class="fab fa-google" style="color: #4285F4;"></i> Google Calendar
+        <i class="fab fa-google"></i> Google Calendar
     </a>
     <a href="https://researchseminars.org/seminar/EUPAC-TP/ics" target="_blank" style="text-decoration: none; display: flex; align-items: center; gap: 5px;">
-        <i class="fas fa-calendar-alt" style="color: #0A66C2;"></i> iCal/Outlook
+        <i class="fas fa-calendar-alt"></i> iCal/Outlook
     </a>
 </div>
 
-  <h2>Future EUPAC-TP Seminars</h2>
+  <h2>Future Seminar</h2>
  <!--   <p>This list is updated automatically from ResearchSeminars.org.</p> -->
   <div class="embed-center">
     <div class="embeddable_schedule" shortname="EUPAC-TP" daterange="future"></div>
   </div>
 
-  <h2>Past EUPAC-TP Seminars</h2>
+  <h2>Past Seminars</h2>
   <div class="embed-center">
     <div class="embeddable_schedule" shortname="EUPAC-TP" daterange="past"></div>
+  </div>
+  <div class="past-talks-actions">
+    <button class="past-talks-toggle"
+            type="button"
+            aria-expanded="false"
+            hidden>Show More Past Talks</button>
   </div>
 
   <!-- Load embed script once -->
@@ -179,6 +230,9 @@
 
       const pastSchedule = document.querySelector('[daterange="past"]');
       const pastScheduleWrapper = pastSchedule?.parentElement;
+      const pastTalksToggle = document.querySelector('.past-talks-toggle');
+      const pastTalkLimit = 10;
+      let pastTalksExpanded = false;
       const slidesByDate = {
         'Jul 24': 'seminars/26-07-24/26-07-24.pdf',
         'Apr 17': 'seminars/26-04-17/26-04-17.pdf',
@@ -188,42 +242,70 @@
         'Nov 07': 'seminars/25-11-7/Anomaly-inflow-II-jskelton.pdf'
       };
 
-      const addSlidesColumn = () => {
+      const updatePastTalkVisibility = table => {
+        const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+        rows.forEach((row, index) => {
+          row.hidden = !pastTalksExpanded && index >= pastTalkLimit;
+        });
+
+        if (pastTalksToggle) {
+          pastTalksToggle.hidden = rows.length <= pastTalkLimit;
+          pastTalksToggle.textContent = pastTalksExpanded
+            ? 'Show Less Past Talks'
+            : 'Show More Past Talks';
+          pastTalksToggle.setAttribute(
+            'aria-expanded',
+            String(pastTalksExpanded)
+          );
+        }
+      };
+
+      const enhancePastSchedule = () => {
         const table = pastScheduleWrapper?.querySelector(
           '[daterange="past"] table'
         );
-        if (!table || table.dataset.slidesColumnAdded === 'true') return;
+        if (!table) return;
 
-        const headerRow = table.querySelector('thead tr') || table.querySelector('tr');
-        if (!headerRow) return;
+        if (table.dataset.slidesColumnAdded !== 'true') {
+          const headerRow = table.querySelector('thead tr') || table.querySelector('tr');
+          if (!headerRow) return;
 
-        const slidesHeader = document.createElement('th');
-        slidesHeader.textContent = 'Slides';
-        headerRow.appendChild(slidesHeader);
+          const slidesHeader = document.createElement('th');
+          slidesHeader.textContent = 'Slides';
+          headerRow.appendChild(slidesHeader);
 
-        table.querySelectorAll('tbody tr').forEach(row => {
-          const slidesCell = document.createElement('td');
-          const seminarDate = row.querySelector('.monthdate')?.textContent.trim();
-          const slidesPath = slidesByDate[seminarDate];
+          table.querySelectorAll('tbody tr').forEach(row => {
+            const slidesCell = document.createElement('td');
+            const seminarDate = row.querySelector('.monthdate')?.textContent.trim();
+            const slidesPath = slidesByDate[seminarDate];
 
-          if (slidesPath) {
-            const slidesLink = document.createElement('a');
-            slidesLink.href = slidesPath;
-            slidesLink.textContent = 'View';
-            slidesLink.target = '_blank';
-            slidesLink.rel = 'noopener';
-            slidesCell.appendChild(slidesLink);
-          }
+            if (slidesPath) {
+              const slidesLink = document.createElement('a');
+              slidesLink.href = slidesPath;
+              slidesLink.textContent = 'View';
+              slidesLink.target = '_blank';
+              slidesLink.rel = 'noopener';
+              slidesCell.appendChild(slidesLink);
+            }
 
-          row.appendChild(slidesCell);
-        });
+            row.appendChild(slidesCell);
+          });
 
-        table.dataset.slidesColumnAdded = 'true';
+          table.dataset.slidesColumnAdded = 'true';
+        }
+
+        updatePastTalkVisibility(table);
       };
 
+      pastTalksToggle?.addEventListener('click', () => {
+        pastTalksExpanded = !pastTalksExpanded;
+        enhancePastSchedule();
+      });
+
       if (pastScheduleWrapper) {
-        addSlidesColumn();
-        new MutationObserver(addSlidesColumn).observe(pastScheduleWrapper, {
+        enhancePastSchedule();
+        new MutationObserver(enhancePastSchedule).observe(pastScheduleWrapper, {
           childList: true,
           subtree: true
         });
